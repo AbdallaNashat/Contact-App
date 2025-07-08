@@ -1,10 +1,21 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:newcontact/core/constants/app_assets.dart';
 import 'package:newcontact/core/constants/color_palette.dart';
+import 'package:newcontact/models/contact.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const String routeName = "/home";
+
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List<Contact> contacts = [Contact(File("Asd"), "name", "number", "email")];
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +23,21 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: ColorPalette.darkBlue,
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(AppAssets.contact , height: MediaQuery.of(context).size.height * 0.05, ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Image.asset(
+                AppAssets.contact,
+                height: MediaQuery.of(context).size.height * 0.05,
+              ),
+            ),
+            contacts.isEmpty
+                ? Column()
+                : Expanded(
+                    child: Container(
+                    color: Colors.blue,
+                  ))
           ],
         ),
       ),
