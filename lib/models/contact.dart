@@ -7,4 +7,6 @@ class Contact {
   String email;
 
   Contact(this.image, this.name, this.number, this.email);
+
+  static List<Contact> contacts = [];
 }
